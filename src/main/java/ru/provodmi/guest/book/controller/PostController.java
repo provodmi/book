@@ -17,10 +17,10 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/")
-    protected ModelAndView addPost(@RequestBody Post post) {
+    @PostMapping("/{txt}")
+    protected ModelAndView addPost(@PathVariable String txt) {
         ModelAndView posts = new ModelAndView("post");
-        postService.add(post);
+        postService.add(txt);
 //        GuestBook.addPost(post);
         return posts;
     }
@@ -34,7 +34,7 @@ public class PostController {
     }
 
     @GetMapping("/")
-    public ModelAndView show() {
+    public ModelAndView findAll() {
         ModelAndView posts = new ModelAndView("post");
         postService.getAllPosts();
 

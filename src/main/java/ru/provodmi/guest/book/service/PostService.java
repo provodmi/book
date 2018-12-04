@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import ru.provodmi.guest.book.repository.PostRepository;
 import ru.provodmi.guest.entity.Post;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class PostService {
 
-    private final PostRepository postRepository;
+    private PostRepository postRepository;
 
     @Autowired
     public PostService(PostRepository postRepository) {
@@ -22,11 +24,13 @@ public class PostService {
         postRepository.delete(id);
     }
 
-    public void add(Post post) {
-        log.info("ADD POST : {}", post);
+    public void add(String txt) {
+        log.info("ADD POST : {}", txt);
+        postRepository.add(txt);
     }
 
     public void getAllPosts() {
         log.info("GET ALL POSTS");
+//        List<Post> posts = PostRepository.getAllPosts();
     }
 }
