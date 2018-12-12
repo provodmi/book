@@ -46,8 +46,8 @@
     <form:form method="POST" action="/add" modelAttribute="post" >
         <table>
             <tr>
-                <td><form:label path="post">PostName</form:label></td>
-                <td><form:input path="post"/></td>
+                <td><form:label path="txt">txt</form:label></td>
+                <td><form:input path="txt"/></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit"/></td>

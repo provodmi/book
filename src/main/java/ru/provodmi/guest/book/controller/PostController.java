@@ -37,8 +37,8 @@ public class PostController {
         if (result.hasErrors()) {
             return "error";
         }
-        postService.add(post.getPost());
-        model.addAttribute("post", post.getPost());
+        postService.add(post.getTxt());
+        model.addAttribute("post", post.getTxt());
         return "posts";
 
     }

@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 public class Post {
     private Long id;
 
-    public String getPost() {
-        return post;
+    public String getTxt() {
+        return txt;
     }
 
-    public void setPost(String post) {
-        this.post = post;
+    public void setTxt(String txt) {
+        this.txt = txt;
     }
 
-    private String post;
+    private String txt;
 }
