@@ -56,7 +56,7 @@ public class GuestBook {
         try (Connection c = getConnection();
              PreparedStatement ps = c.prepareStatement("INSERT INTO posts(id,txt) VALUES  (?,?)");) {
             ps.setLong(1, p.getId());
-            ps.setString(2, p.getPost());
+            ps.setString(2, p.getTxt());
             ps.execute();
         }
     }

@@ -26,7 +26,8 @@ public class PostController {
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
 //    @GetMapping("")
     public ModelAndView showPost() {
-        ModelAndView posts = new ModelAndView("posts", "post", postService.getAllPosts());
+        ModelAndView posts = new ModelAndView("posts", "post", new Post());
+
 //        posts.addObject("posts", );
         return posts;
     }
