@@ -1,15 +1,21 @@
 package ru.provodmi.guest.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.provodmi.guest.book.service.PostService;
 import ru.provodmi.guest.entity.Post;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("/post")
+//@RequestMapping("/posts")
 public class PostController {
 
+    @Autowired
     private final PostService postService;
 
     @Autowired
@@ -17,30 +23,37 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/{txt}")
-    protected ModelAndView addPost(@PathVariable String txt) {
-        ModelAndView posts = new ModelAndView("post");
-        postService.add(txt);
-//        GuestBook.addPost(post);
+    @RequestMapping(value = "/posts", method = RequestMethod.GET)
+//    @GetMapping("")
+    public ModelAndView showPost() {
+        ModelAndView posts = new ModelAndView("posts", "post", postService.getAllPosts());
+//        posts.addObject("posts", );
         return posts;
     }
 
-    @DeleteMapping("/{id}")
-    public ModelAndView deletePost(@PathVariable Long id) {
-        ModelAndView posts = new ModelAndView("post");
-        postService.delete(id);
-//        GuestBook.deletePost(Integer.parseInt(request.getParameter("id")));
-        return posts;
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+//    @PostMapping("/add")
+    public String submit(@Valid @ModelAttribute("post") Post post, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+        postService.add(post.getPost());
+        model.addAttribute("post", post.getPost());
+        return "posts";
+
     }
 
-    @GetMapping("/")
-    public ModelAndView findAll() {
-        ModelAndView posts = new ModelAndView("post");
-        postService.getAllPosts();
+////    @RequestMapping(value = "/delete/", method = RequestMethod.GET)
+//    @GetMapping("/{id}")
+//    public ModelAndView deletePost(@PathVariable Long id) {
+//        ModelAndView posts = new ModelAndView("posts");
+//        postService.delete(id);
+////        posts.addObject("posts", postService.getAllPosts());
+//        findAll();
+//        return posts;
+//    }
 
-        //        request.setAttribute("posts", GuestBook.getAllPosts() );
-        return posts;
-    }
+
 
 
 }

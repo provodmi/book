@@ -12,6 +12,7 @@ import java.util.List;
 @Slf4j
 public class PostService {
 
+    @Autowired
     private PostRepository postRepository;
 
     @Autowired
@@ -29,8 +30,8 @@ public class PostService {
         postRepository.add(txt);
     }
 
-    public void getAllPosts() {
+    public List<Post> getAllPosts() {
         log.info("GET ALL POSTS");
-//        List<Post> posts = PostRepository.getAllPosts();
+        return postRepository.getAllPosts();
     }
 }

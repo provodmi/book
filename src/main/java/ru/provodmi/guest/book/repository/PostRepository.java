@@ -25,14 +25,14 @@ public class PostRepository {
         return jdbcTemplate.query("select * from posts",new PostRowMapper());
     }
 
-    public void add(String txt) {
+    public void add(String post) {
 
         final String sql = "insert into posts(post) values(?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql);
-                ps.setString(1, txt);
+                ps.setString(1, post);
                 return ps;
             }
         });
@@ -47,9 +47,9 @@ class PostRowMapper implements RowMapper<Post>
 {
     @Override
     public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Post post = new Post();
-        post.setId(rs.getLong("id"));
-        post.setTxt(rs.getString("txt"));
+        Post post = new Post(rs.getLong("id"),rs.getString("post"));
+//        post.setId(rs.getLong("id"));
+//        post.setTxt(rs.getString("post"));
         return post;
     }
 }
