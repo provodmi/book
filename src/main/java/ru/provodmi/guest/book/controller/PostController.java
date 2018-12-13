@@ -46,13 +46,13 @@ public class PostController {
 
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/", method = RequestMethod.GET)
 //    @GetMapping("/{id}")
-    public ModelAndView deletePost(@PathVariable Long id) {
-        ModelAndView posts = new ModelAndView("posts");
+    public RedirectView deletePost(@RequestParam(required = true) Long id) {
         postService.delete(id);
-        posts.addObject("posts", postService.getAllPosts());
-        return posts;
+        RedirectView rv = new RedirectView();
+        rv.setUrl("/posts");
+        return rv;
     }
 
 

@@ -37,11 +37,13 @@
                 <tr class="w3-green">
                     <th>ID</th>
                     <th>POST</th>
+                    <th>edit</th>
                 </tr>
                 <c:forEach items="${posts}" var="post">
                     <tr>
                         <td><c:out value="${post.id}"></c:out></td>
                         <td><c:out value="${post.txt}"></c:out></td>
+                        <td><a style="color:red" href="/delete/?id=${post.id}">x</a></td>
                     </tr>
                 </c:forEach>
             </table>
