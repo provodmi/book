@@ -36,7 +36,7 @@ public class PostController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
 //    @PostMapping("/add")
-    public RedirectView submit(@Valid @ModelAttribute("post") Post post, ModelMap model) {
+    public RedirectView submit(Post post) {
 
         postService.add(post.getTxt());
 //        model.addAttribute("post", post.getTxt());
