@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import ru.provodmi.guest.book.service.PostService;
 import ru.provodmi.guest.entity.Post;
 
@@ -27,6 +28,7 @@ public class PostController {
 //    @GetMapping("")
     public ModelAndView showPost() {
         ModelAndView posts = new ModelAndView("posts", "post", new Post());
+        posts.addObject("posts", postService.getAllPosts());
 
 //        posts.addObject("posts", );
         return posts;
@@ -34,25 +36,24 @@ public class PostController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
 //    @PostMapping("/add")
-    public String submit(@Valid @ModelAttribute("post") Post post, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "error";
-        }
+    public RedirectView submit(@Valid @ModelAttribute("post") Post post, ModelMap model) {
+
         postService.add(post.getTxt());
-        model.addAttribute("post", post.getTxt());
-        return "posts";
+//        model.addAttribute("post", post.getTxt());
+        RedirectView rv = new RedirectView();
+        rv.setUrl("posts");
+        return rv;
 
     }
 
-////    @RequestMapping(value = "/delete/", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 //    @GetMapping("/{id}")
-//    public ModelAndView deletePost(@PathVariable Long id) {
-//        ModelAndView posts = new ModelAndView("posts");
-//        postService.delete(id);
-////        posts.addObject("posts", postService.getAllPosts());
-//        findAll();
-//        return posts;
-//    }
+    public ModelAndView deletePost(@PathVariable Long id) {
+        ModelAndView posts = new ModelAndView("posts");
+        postService.delete(id);
+        posts.addObject("posts", postService.getAllPosts());
+        return posts;
+    }
 
 
 
