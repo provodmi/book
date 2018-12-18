@@ -1,6 +1,8 @@
 package ru.provodmi.guest.book.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.provodmi.guest.book.repository.PostRepository;
@@ -20,17 +22,21 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public void delete(Long id) {
+    public Post delete(Long id) {
+        String str = postRepository.get(id);
+        Post post = new Post(id,str);
         log.info("DELETE POST ID = {}", id);
         postRepository.delete(id);
+        return post;
     }
 
-    public void add(String txt) {
-        log.info("ADD POST : {}", txt);
-        postRepository.add(txt);
+    public Post add(Post post) {
+        log.info("ADD POST : {}", post.getTxt());
+        postRepository.add(post.getTxt());
+        return post;
     }
 
-    public List<Post> getAllPosts() {
+    public List<Post> getAll() {
         log.info("GET ALL POSTS");
         return postRepository.getAllPosts();
     }

@@ -21,8 +21,8 @@ public class PostRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Transactional(readOnly = true)
-    public List<Post> getAllPosts(){
-        return jdbcTemplate.query("select * from posts",new PostRowMapper());
+    public List<Post> getAllPosts() {
+        return jdbcTemplate.query("select * from posts", new PostRowMapper());
     }
 
     public void add(String post) {
@@ -39,17 +39,21 @@ public class PostRepository {
     }
 
     public void delete(Long id) {
-        jdbcTemplate.update("delete from posts where id=?",id);
+        jdbcTemplate.update("delete from posts where id=?", id);
     }
-}
 
-class PostRowMapper implements RowMapper<Post>
-{
-    @Override
-    public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Post post = new Post(rs.getLong("id"),rs.getString("post"));
+
+    public String get(Long id) {
+        return (jdbcTemplate.queryForRowSet("SELECT * from POSTS where id=?", id).getString("post"));
+    }
+
+    class PostRowMapper implements RowMapper<Post> {
+        @Override
+        public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Post post = new Post(rs.getLong("id"), rs.getString("post"));
 //        post.setId(rs.getLong("id"));
 //        post.setTxt(rs.getString("post"));
-        return post;
+            return post;
+        }
     }
 }
