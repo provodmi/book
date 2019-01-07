@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Post {
     private Long id;
+    private String txt;
 
     public String getTxt() {
         return txt;
@@ -19,7 +20,6 @@ public class Post {
         this.txt = txt;
     }
 
-    private String txt;
 
     public Long getId() {
         return id;

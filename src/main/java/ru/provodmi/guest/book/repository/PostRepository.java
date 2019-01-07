@@ -17,8 +17,12 @@ import java.util.List;
 @Repository
 public class PostRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public PostRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Transactional(readOnly = true)
     public List<Post> getAllPosts() {
@@ -26,7 +30,6 @@ public class PostRepository {
     }
 
     public void add(String post) {
-
         final String sql = "insert into posts(post) values(?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
@@ -43,8 +46,8 @@ public class PostRepository {
     }
 
 
-    public String get(Long id) {
-        return (jdbcTemplate.queryForRowSet("SELECT * from POSTS where id=?", id).getString("post"));
+    public Post get(Long id) {
+        return jdbcTemplate.queryForObject("SELECT * from POSTS where id=" + id, new PostRowMapper());
     }
 
     class PostRowMapper implements RowMapper<Post> {

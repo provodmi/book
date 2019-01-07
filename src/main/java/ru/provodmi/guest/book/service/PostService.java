@@ -14,7 +14,6 @@ import java.util.List;
 @Slf4j
 public class PostService {
 
-    @Autowired
     private PostRepository postRepository;
 
     @Autowired
@@ -22,12 +21,8 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public Post delete(Long id) {
-        String str = postRepository.get(id);
-        Post post = new Post(id,str);
-        log.info("DELETE POST ID = {}", id);
+    public void delete(Long id) {
         postRepository.delete(id);
-        return post;
     }
 
     public Post add(Post post) {
