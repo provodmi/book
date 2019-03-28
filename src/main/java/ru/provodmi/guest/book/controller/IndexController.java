@@ -1,13 +1,10 @@
 package ru.provodmi.guest.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.provodmi.guest.book.service.PostService;
-import ru.provodmi.guest.entity.Post;
-
-import java.util.List;
+import ru.provodmi.guest.book.entity.Post;
 
 @RestController
 @RequestMapping("/")

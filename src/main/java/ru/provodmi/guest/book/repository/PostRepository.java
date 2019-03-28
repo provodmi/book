@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.provodmi.guest.entity.Post;
+import ru.provodmi.guest.book.entity.Post;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

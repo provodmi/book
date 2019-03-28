@@ -1,12 +1,11 @@
 package ru.provodmi.guest.book.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.provodmi.guest.book.repository.PostRepository;
-import ru.provodmi.guest.entity.Post;
+import ru.provodmi.guest.book.entity.Post;
 
 import java.util.List;
 
@@ -22,6 +21,7 @@ public class PostService {
     }
 
     public void delete(Long id) {
+        log.info("DEL POST : {}", id);
         postRepository.delete(id);
     }
 
