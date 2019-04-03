@@ -24,13 +24,14 @@ public class PostController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public Post createPost(@RequestBody Post post) {
-        return postService.add(post);
+    public String createPost(@RequestBody Post post) {
+        postService.add(post);
+        return "redirect:/postlist";
     }
 
     @DeleteMapping(value = "/{id}")
     public void deletePost(@PathVariable Long id) {
-        postService.delete(id);
+           postService.delete(id);
     }
 
     @GetMapping(

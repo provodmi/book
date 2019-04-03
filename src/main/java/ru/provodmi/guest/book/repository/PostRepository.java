@@ -54,8 +54,6 @@ public class PostRepository {
         @Override
         public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
             Post post = new Post(rs.getLong("id"), rs.getString("post"));
-//        post.setId(rs.getLong("id"));
-//        post.setTxt(rs.getString("post"));
             return post;
         }
     }

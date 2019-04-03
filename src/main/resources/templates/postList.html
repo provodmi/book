@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="materialize/css/materialize.min.css" rel="stylesheet">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+    <script>
+        function deletePost(id) {
+
+            $.ajax({
+                type: "DELETE",
+                url: "/post/"+id,
+                success: function () {
+                    console.log( "delete " + id );
+                    var info = $("#tr"+id);
+                    info.remove();
+                    M.toast({html: 'Post id ='
+                            + id
+                            + " and content = '"
+                            + info[0].getElementsByTagName("td")[1].textContent
+                            + "' was deleted" });
+                }
+            });
+        }
+        $(document).ready(function () {
+
+        });
+    </script>
+
+    <title>Post List</title>
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav class="top-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a class="page-title">BLOGGG</a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a class="waves-effect waves-light btn"  href="/index">
+                            Main page
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light btn"  href="postlist">
+                            All posts
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-light btn" href="addpost">
+                            New post
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<br/><br/>
+<div class="container">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Post</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody th:each ="post : ${posts}">
+        <th:each var="post" items="${posts}">
+            <tr>
+                <td th:utext="${post.id}">...</td>
+                <td th:utext="${post.txt}">...</td>
+                <td >
+                    <a class="waves-effect waves-light btn" id="btn_all" th:onclick="'deletePost(\''+ ${post.id}+'\');'">DELETE</a>
+                </td>
+            </tr>
+        </th:each>
+        </tbody>
+    </table>
+</div>
+<div class="footer-copyright">
+    <div class="container">
+        © 2019 Dmitry Provodnikov
+        <a class="grey-text text-lighten-4 right" href="http://github.com/provodmi">Git</a>
+    </div>
+</div>
+</body>
+</html>

@@ -48,7 +48,7 @@
                         <td>${post.id}</td>
                         <td>${post.txt}</td>
                         <td>
-                            <a class="waves-effect waves-light btn" id="btn_all" onclick="deletePost(${post.id})">
+                            <a class="waves-effect waves-light btn" id="btn_all" onclick="deletePost(${post.id})" >
                                 DELETE
                             </a>
                         </td>
