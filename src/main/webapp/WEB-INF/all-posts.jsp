@@ -11,12 +11,12 @@
 
             $.ajax({
                 type: "DELETE",
-                url: "/post/"+id,
+                url: "/book/"+id,
                 success: function () {
                     console.log( "delete " + id );
                     var info = $("#tr"+id);
                     info.remove();
-                    M.toast({html: 'Post id ='
+                    M.toast({html: 'Book id ='
                             + id
                             + " and content = '"
                             + info[0].getElementsByTagName("td")[1].textContent
@@ -43,12 +43,12 @@
                 </thead>
 
                 <tbody>
-                <c:forEach var="post" items="${posts}">
-                    <tr id="tr${post.id}">
-                        <td>${post.id}</td>
-                        <td>${post.txt}</td>
+                <c:forEach var="book" items="${posts}">
+                    <tr id="tr${book.id}">
+                        <td>${book.id}</td>
+                        <td>${book.txt}</td>
                         <td>
-                            <a class="waves-effect waves-light btn" id="btn_all" onclick="deletePost(${post.id})" >
+                            <a class="waves-effect waves-light btn" id="btn_all" onclick="deletePost(${book.id})" >
                                 DELETE
                             </a>
                         </td>

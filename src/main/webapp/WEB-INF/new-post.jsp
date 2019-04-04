@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <html>
 <head>
-    <title>Add post</title>
+    <title>Add book</title>
     <jsp:include page="head.jsp"/>
     <script>
         $(document).ready(function () {
@@ -12,7 +12,7 @@
                 console.log(txt);
                 $.ajax({
                     type: "POST",
-                    url: "/post/",
+                    url: "/book/",
                     data: JSON.stringify(json),
                     success: function (data) {
                         console.log(data);

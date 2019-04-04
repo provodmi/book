@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
-import ru.provodmi.guest.book.service.PostService;
-import ru.provodmi.guest.book.entity.Post;
+import ru.provodmi.guest.book.entity.Book;
+import ru.provodmi.guest.book.service.BookService;
 
 @Controller
 public class IndexController {
 
-    private final PostService postService;
+    private final BookService bookService;
 
     @Value("${welcome.message}")
     private String message;
 
     @Autowired
-    public IndexController(PostService postService) {
-        this.postService = postService;
+    public IndexController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
@@ -30,18 +30,17 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "/addpost", method = RequestMethod.GET)
+    @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public ModelAndView createPostPage() {
-        ModelAndView mav = new ModelAndView("addPost");
-//        posts.addObject("posts", postService.getAllPosts());
-        mav.addObject("pPost", new Post());
+        ModelAndView mav = new ModelAndView("addBook");
+        mav.addObject("Book", new Book());
         return mav;
     }
 
-    @RequestMapping(value="/postlist", method=RequestMethod.GET)
+    @RequestMapping(value="/booklist", method=RequestMethod.GET)
     public ModelAndView allPostsPage() {
-        ModelAndView mav = new ModelAndView("postList");
-        mav.addObject("posts", postService.getAll());
+        ModelAndView mav = new ModelAndView("bookList");
+        mav.addObject("books", bookService.getAll());
         return mav;
     }
 }

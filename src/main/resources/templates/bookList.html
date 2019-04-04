@@ -7,26 +7,28 @@
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 
     <script>
-        function deletePost(id) {
+        function deleteBook(id) {
 
             $.ajax({
                 type: "DELETE",
-                url: "/post/"+id,
+                url: "/book/"+id,
                 success: function () {
                     console.log( "delete " + id );
                     var info = $("#tr"+id);
                     info.remove();
-                    M.toast({html: 'Post id ='
+                    M.toast({html: 'Book id ='
                             + id
                             + " and content = '"
                             + info[0].getElementsByTagName("td")[1].textContent
                             + "' was deleted" });
                 }
             });
+            location.reload(true);
         }
         $(document).ready(function () {
 
         });
+
     </script>
 
     <title>Post List</title>
@@ -44,13 +46,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-light btn"  href="postlist">
-                            All posts
+                        <a class="waves-effect waves-light btn"  href="booklist">
+                            All books
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-light btn" href="addpost">
-                            New post
+                        <a class="waves-effect waves-light btn" href="addbook">
+                            New book
                         </a>
                     </li>
                 </ul>
@@ -64,17 +66,21 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Post</th>
-            <th>Actions</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Action</th>
         </tr>
         </thead>
-        <tbody th:each ="post : ${posts}">
-        <th:each var="post" items="${posts}">
+        <tbody th:each ="book : ${books}">
+        <th:each var="book" items="${books}">
             <tr>
-                <td th:utext="${post.id}">...</td>
-                <td th:utext="${post.txt}">...</td>
+                <td th:utext="${book.getId()}">...</td>
+                <td th:utext="${book.getAuthor()}">...</td>
+                <td th:utext="${book.getTitle()}">...</td>
+                <td th:utext="${book.getYear()}">...</td>
                 <td >
-                    <a class="waves-effect waves-light btn" id="btn_all" th:onclick="'deletePost(\''+ ${post.id}+'\');'">DELETE</a>
+                    <a class="waves-effect waves-light btn" id="btn_all" th:onclick="'deleteBook(\''+ ${book.getId()}+'\');'">DELETE</a>
                 </td>
             </tr>
         </th:each>

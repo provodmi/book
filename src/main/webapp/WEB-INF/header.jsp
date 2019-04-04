@@ -17,7 +17,7 @@
                         </li>
                         <li>
                             <a class="waves-effect waves-light btn" href="create">
-                                New post
+                                New book
                             </a>
                         </li>
                     </ul>

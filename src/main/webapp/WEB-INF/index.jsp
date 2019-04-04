@@ -12,7 +12,7 @@
                 console.log(txt);
                 $.ajax({
                     type: "POST",
-                    url: "/post/",
+                    url: "/book/",
                     data: JSON.stringify(json),
                     success: function (data) {
                         console.log(data);
@@ -35,11 +35,11 @@
             //             xhr.setRequestHeader("Accept", "application/json");
             //             xhr.setRequestHeader("Content-Type", "application/json");
             //         },
-            //         success: function (post) {
+            //         success: function (book) {
             //             var respContent = "";
             //
-            //             respContent += "&lt;span class='success'>Post was created: [";
-            //             respContent += post.txt + "]</span>";
+            //             respContent += "&lt;span class='success'>Book was created: [";
+            //             respContent += book.txt + "]</span>";
             //
             //             $("#PostFromResponse").html(respContent);
             //         }

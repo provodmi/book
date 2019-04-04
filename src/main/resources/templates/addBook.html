@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,12 +13,14 @@
         $(document).ready(function () {
 
             $("#save").click(function () {
-                var txt = $('#txt').val();
-                var json = {"txt": txt};
-                console.log(txt);
+                var author = $('#author').val(),
+                    title = $('#title').val(),
+                    year = $('#year').val();
+                var json = {"author": author, "title": title, "year": year};
+                console.log(json);
                 $.ajax({
                     type: "POST",
-                    url: "/post/",
+                    url: "/book/",
                     data: JSON.stringify(json),
                     success: function (data) {
                         console.log(data);
@@ -43,13 +46,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-light btn" href="postlist">
-                            All posts
+                        <a class="waves-effect waves-light btn" href="booklist">
+                            All books
                         </a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-light btn" href="addpost">
-                            New post
+                        <a class="waves-effect waves-light btn" href="addbook">
+                            New book
                         </a>
                     </li>
                 </ul>
@@ -61,19 +64,26 @@
 
 <div class="container">
     <div class="row">
-        <div class="col s8">
+        <div class="col s12">
             <form>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="txt" type="text" required>
-                        <label for="txt">Post</label>
+                        <input id="author" type="text" required>
+                        <label for="author">Author</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="title" type="text" required>
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="year" type="text" required>
+                        <label for="year">Year</label>
                     </div>
                 </div>
-                <a class="waves-effect waves-light btn" id="save">Save</a>
+                <a class="waves-effect waves-light btn" th:id="save">Save</a>
             </form>
         </div>
     </div>
-</div>
 </div>
 
 

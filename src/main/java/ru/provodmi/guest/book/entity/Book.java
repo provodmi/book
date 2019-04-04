@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Book {
     private Long id;
-    private String txt;
+    private String author;
+    private String title;
+    private String year;
 }
