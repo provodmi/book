@@ -31,36 +31,13 @@
 
     </script>
 
-    <title>Post List</title>
+    <title>Book List</title>
 </head>
 <body>
-<div class="navbar-fixed">
-    <nav class="top-nav">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a class="page-title">BLOGGG</a>
-                <ul class="right hide-on-med-and-down">
-                    <li>
-                        <a class="waves-effect waves-light btn"  href="/index">
-                            Main page
-                        </a>
-                    </li>
-                    <li>
-                        <a class="waves-effect waves-light btn"  href="booklist">
-                            All books
-                        </a>
-                    </li>
-                    <li>
-                        <a class="waves-effect waves-light btn" href="addbook">
-                            New book
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
-<br/><br/>
+
+<th:block th:include="/header"></th:block>
+
+<br/>
 <div class="container">
     <table border="1">
         <thead>
@@ -87,11 +64,7 @@
         </tbody>
     </table>
 </div>
-<div class="footer-copyright">
-    <div class="container">
-        © 2019 Dmitry Provodnikov
-        <a class="grey-text text-lighten-4 right" href="http://github.com/provodmi">Git</a>
-    </div>
-</div>
+
+<th:block th:include="/footer"></th:block>
 </body>
 </html>
